@@ -23,6 +23,6 @@ export default {
         width: 1160px;
         display: flex;
         justify-content: space-between;
-        font-size: 30px;
+        font-size: 16px;
     }
 </style>

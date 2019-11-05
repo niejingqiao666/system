@@ -3,7 +3,7 @@
     <div class="header_logo"></div>
     <input type="text" class="header_input" placeholder="请输入检索内容">
     <img src="" alt="" class="header_img">
-    <i></i>
+    <i class="iconfont icon-search"></i>
     <button class="header_button">搜索</button>
   </div>
 </template>
@@ -18,7 +18,12 @@ export default {};
   margin: 0 auto;
   margin-top: 30px;
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-search{
+  margin-left: -120px;
 }
 
 .header_logo {
@@ -29,11 +34,13 @@ export default {};
 
 .header_input{
     width: 700px;
+    height: 30px;
 }
 
 .header_button{
     width: 100px;
     border-radius: 25px;
     background-color: rgba(68,68,229);
+    height: 30px;
 }
 </style>
