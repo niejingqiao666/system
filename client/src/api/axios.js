@@ -1,8 +1,8 @@
 import axios from 'axios';
 import qs from 'qs';
-axios.defaults.baseURL = "http://127.0.0.1:9999";
+axios.defaults.baseURL = "http://127.0.0.1:3001";
 axios.defaults.timeout = 10000;
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.transformRequest = data => qs.stringify(data);
 axios.interceptors.request.use(config => {

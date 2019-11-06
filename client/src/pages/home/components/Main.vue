@@ -1,14 +1,14 @@
 <template>
     <div class="main_container">
-        <search-component></search-component>
+        <login-component></login-component>
     </div>
 </template>
 
 <script>
-import SearchComponent from './MainSearch';
+import LoginComponent from './MainLogin';
 export default {
     components: {
-        SearchComponent
+        LoginComponent
     }
 }
 </script>
