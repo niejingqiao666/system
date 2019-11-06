@@ -10,17 +10,49 @@
       <button>批量数据</button>
     </div>
     <div class="content_result">
-        <card-component></card-component>
+      <card-component v-for="item in dataList" :item="item" :key="item.index"></card-component>
     </div>
   </div>
 </template>
 
 <script>
-import CardComponent from './MainContentCard';
+import CardComponent from "./MainContentCard";
+import VueEvent from "./VueEvent";
+import { getList } from "../../../api/index";
 export default {
-    components: {
-        CardComponent
-    }
+  data() {
+    return {
+      dataList: []
+    };
+  },
+  components: {
+    CardComponent
+  },
+  
+  methods:{
+    
+  },
+  created() {
+    getList().then(result => {
+      if (result.code === 200) {
+        this.dataList = result.data;
+        console.log(this.dataList);
+        // console.log(this.dataList.title);
+        return;
+      }
+    });
+  },
+  mounted(){
+    const _this = this;
+    VueEvent.$on("aaa",function(val){
+      console.info(val);
+        getList(val).then(result => {
+          if (result.code === 200) {
+            _this.dataList = result.data;
+          }
+        });
+    })
+  },
 };
 </script>
 
@@ -36,19 +68,19 @@ export default {
   padding-right: 300px;
   align-items: center;
 
-  button{
-      width: 100px;
-      height: 40px;
-      background-color: rgba(146,141,174);
-      border: none;
-      font-size: 14px;
-      color: white;
+  button {
+    width: 100px;
+    height: 40px;
+    background-color: rgba(146, 141, 174);
+    border: none;
+    font-size: 14px;
+    color: white;
   }
 }
 
-.content_result{
-    background-color: white;
-    margin-top: 10px;
-    height: 450px;
+.content_result {
+  background-color: white;
+  margin-top: 10px;
+  height: 450px;
 }
 </style>

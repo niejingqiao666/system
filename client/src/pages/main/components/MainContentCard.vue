@@ -2,24 +2,19 @@
 <template>
   <div class="card_container">
     <p class="card_title">
-      1.水务工程建设
+      {{`${item.id}.${item.title}`}}
       <input type="checkbox" class="card_checkBox" />
     </p>
     <div class="card_authors">
-      <span>期刊论文</span>
-      <span>许兴武 高圆 诸卫卫 王科威 张陈俊 -</span>
-      <span>环境保护前沿 -</span>
-      <span>2019年 3期</span>
+      <span prop>{{item.author}}</span>
+      <span prop>{{item.vintage}}</span>
     </div>
     <p class="card_abstract">
-      <span>摘要：</span>
-      标准化和信息化融合发展是水务工程建设管理的必然趋势
+      <span>摘要：{{item.abstract}}</span>
+  
     </p>
     <p class="card_keywords">
-      <a href>水务工程建设管理</a>
-      <a href>标准化</a>
-      <a href>信息化</a>
-      <a href>融合发展</a>
+      <a href>{{item.tags}}</a>
     </p>
     <div class="card_bottom">
       <div class="card_buttonGroup">
@@ -40,8 +35,18 @@
 </template>
 
 <script>
-export default {};
+// import { getList } from "../../../api/index";
+export default {
+  name: "CardComponent",
+  data() {
+    return {};
+  },
+  methods: {},
+  props: ["item"]
+};
 </script>
+
+
 
 <style lang="less" scoped>
 .card_container {
@@ -81,9 +86,9 @@ export default {};
   }
 }
 
-.card_buttonGroup{
-    display: flex;
-    align-items: center;
+.card_buttonGroup {
+  display: flex;
+  align-items: center;
 }
 
 .card_button1 {
@@ -92,7 +97,7 @@ export default {};
   color: steelblue;
   border: 1px solid steelblue;
   background-color: white;
-  line-height: 30px;    
+  line-height: 30px;
   padding: 0 5px;
   margin-right: 5px;
   display: inline-block;
@@ -103,6 +108,13 @@ export default {};
   padding: 0 20px;
   text-align: center;
   margin-right: 5px;
-  box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+.card_abstract {
+  overflow: hidden;
+   line-clamp: 2;
+    -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+ 
 }
 </style>
