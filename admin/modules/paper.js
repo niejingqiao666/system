@@ -10,13 +10,13 @@ class PaperModel {
         }
         if(area!=='' && typeof area!=='undefined'){
             if(area !=='all'){
-                where += ` AND c.area='${area}'`;
+                where += ` AND c.area in (${area})`;
             }
         }
         if(title!=='' && typeof title!=='undefined'){
             where += ` AND c.title like '%${title}%'`;
         }
-        let sqlStr=`SELECT c.id,c.title ,c.vintage,c.author,c.abstract,c.tags,c.area from cc_list c 
+        let sqlStr=`SELECT DISTINCT c.id,c.title ,c.vintage,c.author,c.abstract,c.tags,c.area from cc_list c 
                 LEFT JOIN cc_power p on c.area = p.power
                 LEFT JOIN cc_user u on p.user_id = u.id
                 where 1=1 ${where}`;
