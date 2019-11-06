@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import handleLogin from "../../../api/index";
+import {handleLogin} from "../../../api/index";
 import { required } from "vuelidate/lib/validators";
 export default {
   name: "Mainlogin",
