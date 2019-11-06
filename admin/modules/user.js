@@ -105,7 +105,7 @@ class UserModel {
         });
     }
     static async delete(id){
-        let delStr=`delete from p_users where id='${id}'`;
+        let delStr=`delete from cc_users where id='${id}'`;
         console.info(`UserModel模块----->delete方法执行的sql:${delStr}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(delStr,(err, result)=>{
@@ -131,7 +131,7 @@ class UserModel {
         });
     }
     static async findByUserNameAndPwd(username,password){
-        let sqlStr=`select id,username,jobId,desc,state from p_users where username='${username}' and password='${password}'`;
+        let sqlStr=`select id,username,jobId,remarks,state from cc_user where username='${username}' and password='${password}'`;
         console.info(`UserModel模块----->findByUserNameAndPwd方法执行的sql:${sqlStr}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(sqlStr,(err, result)=>{

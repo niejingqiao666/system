@@ -66,6 +66,7 @@ export default {
       this.$v.password.$touch();
       if (!this.$v.username.$invalid) {
         handleLogin(this.username, this.password).then(result => {
+          console.log(result)
           if (result.code === 200) {
             window.location.href = "/index.html";
           } else {

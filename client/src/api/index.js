@@ -6,3 +6,7 @@ export  function handleLogin(username, password) {
         password
     })
 }
+
+export  function getList() {
+    return axios.get('/api/queryData')
+}

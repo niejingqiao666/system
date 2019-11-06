@@ -3,7 +3,7 @@ const mysql=require('mysql');
 let localhost_pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: '123456',
     database:'rccSystem',
     port: 3306,
     multipleStatements: true
