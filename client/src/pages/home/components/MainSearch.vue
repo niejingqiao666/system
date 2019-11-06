@@ -5,7 +5,7 @@
       <input type="text" class="search_input username" />
     </div>
     <div class="input_container">
-      <input type="password" class="search_input password" />
+      <input type="password" class="search_input password"  />
       <img class="hide" src="../../../assets/images/eyeclose.png" alt="">
       <img class="show" src="../../../assets/images/eyeopen.png" alt="">
     </div>
@@ -19,9 +19,13 @@
 </template>
 
 <script>
+
 export default {
-  name: "MainSearch"
+  name: "MainSearch",
+ 
+
 };
+
 </script>
 
 <style lang="less" scoped>
