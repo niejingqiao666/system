@@ -16,7 +16,6 @@ export default {};
     background: url('../../../assets/images/logo.png');
     margin-top: 42px;
 }
-
 .nav_container{
     width: 1160px;
     margin: 0 auto;

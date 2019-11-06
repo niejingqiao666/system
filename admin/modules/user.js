@@ -131,7 +131,7 @@ class UserModel {
         });
     }
     static async findByUserNameAndPwd(username,password){
-        let sqlStr=`select id,username,phone,email,role,create_time as createTime,update_time as updateTime from p_users where username='${username}' and password='${password}'`;
+        let sqlStr=`select id,username,jobId,desc,state from p_users where username='${username}' and password='${password}'`;
         console.info(`UserModel模块----->findByUserNameAndPwd方法执行的sql:${sqlStr}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(sqlStr,(err, result)=>{
