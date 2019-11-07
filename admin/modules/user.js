@@ -105,7 +105,7 @@ class UserModel {
         });
     }
     static async delete(id){
-        let delStr=`delete from cc_user where id='${id}'`;
+        let delStr=`delete from cc_users where id='${id}'`;
         console.info(`UserModel模块----->delete方法执行的sql:${delStr}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(delStr,(err, result)=>{

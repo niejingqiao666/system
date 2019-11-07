@@ -104,6 +104,7 @@ class userController {
                     msg: `登录成功`,
                     token,
                     user:{
+                        userId: result[0].id,
                         username:  result[0].username,
                     }
                 }

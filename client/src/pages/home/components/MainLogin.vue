@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import {handleLogin} from "../../../api/index";
+import { handleLogin } from "../../../api/index";
 import { required } from "vuelidate/lib/validators";
 export default {
   name: "Mainlogin",
@@ -67,6 +67,8 @@ export default {
       if (!this.$v.username.$invalid) {
         handleLogin(this.username, this.password).then(result => {
           if (result.code === 200) {
+            localStorage.setItem('userId', result.user.userId);
+            localStorage.setItem('username', result.user.username);
             window.location.href = "/index.html";
           } else {
             alert("用户名或者密码错误");

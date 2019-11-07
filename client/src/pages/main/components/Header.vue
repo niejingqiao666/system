@@ -1,15 +1,35 @@
 <template>
   <div class="header_container">
     <div class="header_logo"></div>
-    <input type="text" class="header_input" placeholder="请输入检索内容">
+    <input type="text" class="header_input" placeholder="请输入检索内容" v-model="searchInp">
     <img src="" alt="" class="header_img">
     <i class="iconfont icon-search"></i>
-    <button class="header_button">搜索</button>
+    <button class="header_button" @click="performSearch">搜索</button>
   </div>
 </template>
 
 <script>
-export default {};
+import {getList} from '../../../api/index';
+export default {
+  data(){
+    return {
+      searchInp: ''
+    }
+  },
+  methods: {
+    performSearch(){
+      let userId = localStorage.getItem('userId');
+      let title = this.searchInp.trim();
+      getList(userId, title).then(result=>{
+        if (result.code === 200){
+          this.$store.commit('injection', result.data);
+        } else{
+          this.$message.error('发生了一些错误');
+        }
+      })      
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>
