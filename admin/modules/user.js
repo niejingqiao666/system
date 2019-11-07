@@ -28,7 +28,7 @@ class UserModel {
             }
         }
         let sqlStr=`select id,username,phone,email,create_time as createTime,update_time as updateTime
-                    from p_users ${where} limit ${offset},${pageSize}`;
+                    from cc_user ${where} limit ${offset},${pageSize}`;
         console.info(`UserModel模块----->getList方法执行的sql:${sqlStr}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(sqlStr,(err, result)=>{
@@ -63,7 +63,7 @@ class UserModel {
                 where = `${where} AND update_time between '${formDate}' and '${endDate}'`;
             }
         }
-        let sqlStr=`select count(*) as total from p_users ${where}`;
+        let sqlStr=`select count(*) as total from cc_user ${where}`;
         console.info(`UserModel模块----->getListCount方法执行的sql:${sqlStr}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(sqlStr,(err, result)=>{
@@ -79,7 +79,7 @@ class UserModel {
         let uuid = await getUuid();
         //给一个默认的初始密码:123456
         let newPWD = md5('123456');
-        let insertSql=`INSERT INTO p_users(id,username,password,phone,email,create_time,update_time) VALUES ('${uuid}','${username}','${newPWD}','${phone}','${email}','${await format(new Date(),'YYYY-MM-dd HH:mm:ss')}','${await format(new Date(),'YYYY-MM-dd HH:mm:ss')}')`;
+        let insertSql=`INSERT INTO cc_user(id,username,password,phone,email,create_time,update_time) VALUES ('${uuid}','${username}','${newPWD}','${phone}','${email}','${await format(new Date(),'YYYY-MM-dd HH:mm:ss')}','${await format(new Date(),'YYYY-MM-dd HH:mm:ss')}')`;
         console.info(`UserModel模块----->add方法执行的sql:${insertSql}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(insertSql,(err)=>{
@@ -92,7 +92,7 @@ class UserModel {
         });
     }
     static async update(id,phone,email){
-        let updateSql=`UPDATE p_users SET phone='${phone}',email='${email}',update_time='${await format(new Date(),'YYYY-MM-dd HH:mm:ss')}' WHERE id ='${id}'`;
+        let updateSql=`UPDATE cc_user SET phone='${phone}',email='${email}',update_time='${await format(new Date(),'YYYY-MM-dd HH:mm:ss')}' WHERE id ='${id}'`;
         console.info(`UserModel模块----->update方法执行的sql:${updateSql}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(updateSql,(err,res)=>{
@@ -105,7 +105,7 @@ class UserModel {
         });
     }
     static async delete(id){
-        let delStr=`delete from p_users where id='${id}'`;
+        let delStr=`delete from cc_user where id='${id}'`;
         console.info(`UserModel模块----->delete方法执行的sql:${delStr}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(delStr,(err, result)=>{
@@ -118,7 +118,7 @@ class UserModel {
         });
     }
     static async resetPassword(id,password){
-        let updateSql=`UPDATE p_users SET password='${password}',update_time='${await format(new Date(),'YYYY-MM-dd HH:mm:ss')}' WHERE id ='${id}'`;
+        let updateSql=`UPDATE cc_user SET password='${password}',update_time='${await format(new Date(),'YYYY-MM-dd HH:mm:ss')}' WHERE id ='${id}'`;
         console.info(`UserModel模块----->resetPassword方法执行的sql:${updateSql}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(updateSql,(err,res)=>{
@@ -131,7 +131,7 @@ class UserModel {
         });
     }
     static async findByUserNameAndPwd(username,password){
-        let sqlStr=`select id,username,jobId,desc,state from p_users where username='${username}' and password='${password}'`;
+        let sqlStr=`select id,username,jobId,remarks,state from cc_user where username='${username}' and password='${password}'`;
         console.info(`UserModel模块----->findByUserNameAndPwd方法执行的sql:${sqlStr}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(sqlStr,(err, result)=>{
