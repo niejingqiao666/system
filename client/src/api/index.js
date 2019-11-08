@@ -16,6 +16,7 @@ export  function getList(userId, title, area) {
                 types = `${types},${item.type}`;
             }
         });
+        console.log(types);
     }
     return axios.get('/api/queryData',{
         params:{

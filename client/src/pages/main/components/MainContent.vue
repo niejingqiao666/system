@@ -60,11 +60,11 @@ export default {
   mounted() {
     const _this = this;
     VueEvent.$on("aaa", function(val) {
-      console.info(val);
-      getList(val).then(result => {
-        console.log(result);
+      console.log(val);
+      getList('','',val).then(result => {
+        console.log(result)
         if (result.code === 200) {
-          _this.dataList = result.data;
+           _this.$store.commit('injection',result.data);        
         }
       });
     });

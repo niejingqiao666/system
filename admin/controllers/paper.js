@@ -4,29 +4,23 @@ class paperController {
     static async queryData(ctx){
         let {userId="",area="",title=""}=ctx.query;
         try{
+            let arr1=[];
 			if(typeof area!=='undefined' && area!==''){
-				let arr= area.split(",");
-				let arr1=[];
+                let arr= area.split(",");
+
 				if(arr && arr.length > 0){
 					arr.forEach(item=>{
-						arr1.push(`'${item}'`);
+						arr1.push(`${item}`);
 					})
 				}
-				let data=await PaperModel.queryData(userId,arr1,title);
-				 ctx.body = {
-                code: 200,
-                msg: '查询成功',
-                data
-				}
-			} else {
-				let data=await PaperModel.queryData(userId,area,title);
-				 ctx.body = {
-                code: 200,
-                msg: '查询成功',
-                data
-				}
-			}
-           
+            }
+
+            let data=await PaperModel.queryData(userId,arr1,title);
+            ctx.body = {
+           code: 200,
+           msg: '查询成功',
+           data
+           }
         }catch(err){
             console.error(err);
             ctx.body = {

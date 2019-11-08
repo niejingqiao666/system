@@ -8,9 +8,12 @@ class PaperModel {
         if(userId!=='' && typeof userId!=='undefined'){
             where += ` AND u.id='${userId}'`;
         }
-        if(area!=='' && typeof area!=='undefined'){
-            if(area !=='all'){
-                where += ` AND c.area in (${area})`;
+        if(area && area.length > 0){
+			let flag = area.some(item=>{return item ==='all'});
+            if(!flag){
+                let arr1=[];
+                area.forEach(item=>{arr1.push(`'${item}'`)})
+                where += ` AND c.area in (${arr1})`;
             }
         }
         if(title!=='' && typeof title!=='undefined'){

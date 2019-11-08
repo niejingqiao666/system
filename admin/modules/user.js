@@ -118,7 +118,7 @@ class UserModel {
         });
     }
     static async resetPassword(id,password){
-        let updateSql=`UPDATE cc_user SET password='${password}',update_time='${await format(new Date(),'YYYY-MM-dd HH:mm:ss')}' WHERE id ='${id}'`;
+        let updateSql=`UPDATE cc_user SET password='${password}' WHERE id ='${id}'`;
         console.info(`UserModel模块----->resetPassword方法执行的sql:${updateSql}`);
         return await new Promise((resolve,reject)=>{
             localhost_pool.query(updateSql,(err,res)=>{

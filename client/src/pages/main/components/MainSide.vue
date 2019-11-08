@@ -66,6 +66,7 @@ export default {
   },
   methods: {
     change(val) {
+      console.log(val);
       VueEvent.$emit("aaa", val);
     }
   }
