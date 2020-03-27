@@ -31,6 +31,40 @@ class UserList extends PureComponent {
       title:recode.username
     })
   };
+
+
+// 分页onchange时间  查询
+handleTagStandardTableChange = (current, pageSize) => {
+   let {querySearch:{name,age}} = this.state;
+   let param={
+     name,
+     age,
+     current,
+     pageSize
+   }
+   queryList(param);
+   //搜索接口
+}
+
+async queryList(param){
+   let result = await axios({
+    method: "GET",
+    url: `/api/getList?currentPage=${params.current}&pageSize=${params.pageSize}&name=${params.name}&age=${params.age}`,
+  }); 
+}
+
+组件
+ <Pagination 
+    onChange={this.handleTagStandardTableChange}
+    total={this.state.total}
+    pageSize={this.state.pageSize}
+    current={this.state.current}
+    />
+
+
+
+
+
   //删除
   handleDelete = (id) => {
     const _this = this;
